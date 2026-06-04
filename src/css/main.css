@@ -1,9 +1,4 @@
-/* signed: serozr */
-/*
-    File: main.css
-    Purpose: main stylesheet for the portfolio
-    Signed by: serozr
-*/
+
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +21,7 @@
     transition: opacity 0.5s ease-out;
 }
 
-/* End of file - signed: serozr */
+/* End of file  */
 
 .boot-screen.fade-out {
     opacity: 0;
