@@ -1,9 +1,4 @@
-/* signed: serozr */
-/*
-    File: animations.css
-    Purpose: animation keyframes used across the site
-    Signed by: serozr
-*/
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
