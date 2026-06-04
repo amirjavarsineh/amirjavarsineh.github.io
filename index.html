@@ -1,0 +1,694 @@
+<!--
+    File: index.html
+    Purpose: Developer portfolio main page
+    Signed by: Amir Javarsineh
+    Date: 2025-10-16
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amir Javarsineh</title>
+    <meta name="description" content="Modern developer portfolio with terminal-inspired design">
+    <meta name="author" content="serozr">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <!-- Terminal Boot Screen - signed: serozr -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-content">
+            <div class="boot-header">
+                <pre class="ascii-art">
+ ____  _____ _   _ _____ _     ___  ____  _____ ____  
+|  _ \| ____| | | | ____| |   / _ \|  _ \| ____|  _ \ 
+| | | |  _| | | | |  _| | |  | | | | |_) |  _| | |_) |
+| |_| | |___| |_| | |___| |__| |_| |  __/| |___|  _ < 
+|____/|_____|\___/|_____|_____\___/|_|   |_____|_| \_\
+                </pre>
+            </div>
+            <div class="boot-terminal">
+                <p><span class="boot-prompt">[SYSTEM]</span> <span class="boot-text">Initializing system...</span></p>
+                <p><span class="boot-prompt">[BOOT]</span> <span class="boot-text">Loading core modules</span> <span class="boot-dots"></span></p>
+                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Mounting file systems</span> <span class="boot-status boot-ok">[OK]</span></p>
+                <p><span class="boot-prompt">[LOAD]</span> <span class="boot-text">Starting network services</span> <span class="boot-status boot-ok">[OK]</span></p>
+                <p><span class="boot-prompt">[EXEC]</span> <span class="boot-text">Loading portfolio.sh</span> <span class="boot-dots"></span></p>
+                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Initializing user interface</span> <span class="boot-status boot-ok">[OK]</span></p>
+                <p><span class="boot-prompt">[DONE]</span> <span class="boot-text">System ready</span> <span class="boot-status boot-ready">[READY]</span></p>
+            </div>
+            <div class="boot-progress">
+                <div class="boot-progress-bar"></div>
+            </div>
+            <p class="boot-footer">Press any key to continue... <span class="boot-sign">Amir Javarsineh</span></p>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo">&gt;_developer.sh <span class="logo-sign">· Amir Javarsineh</span></div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" onclick="closeMenu()">About</a>
+                <a href="#skills" onclick="closeMenu()">Skills</a>
+                <a href="#experience" onclick="closeMenu()">Experience</a>
+                <a href="#education" onclick="closeMenu()">Education</a>
+                <a href="#certifications" onclick="closeMenu()">Certifications</a>
+                <!-- <a href="#projects" onclick="closeMenu()">Projects</a>
+                <a href="#blog" onclick="closeMenu()">Blog</a> -->
+                <a href="#contact" onclick="closeMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <div class="tag">// CyberSecurity Enginieer</div>
+            <h1>Amir Javarsineh</h1>
+            <p class="subtitle">Building digital experiences</p>
+            
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                </div>
+                <div class="terminal-text">
+                    <p><span class="prompt">$</span> <span class="command">./get_profile.sh</span></p>
+                    <p class="output">Developer with expertise in:</p>
+                    <p class="output"><span class="prompt">&gt;</span> CyberSecurity Enginieer</p>
+                    <p class="output"><span class="prompt">&gt;</span> Web Development</p>
+                    <p class="output"><span class="prompt">&gt;</span> Creative Projects</p>
+                    <br>
+                    <p><span class="prompt">$</span> <span class="command">cat contact.txt</span></p>
+                    <p class="output">GitHub: <a href="https://github.com/amirjavarsineh" target="_blank" class="link">github.com/AmirJavarsineh</a> </p>
+                    <br>
+                    <p><span class="prompt">$</span> <span class="output">_</span><span style="animation: blink 1s infinite;">|</span></p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <!-- <a href="#projects" class="btn btn-primary">View Projects</a> -->
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p class="about-intro">
+                        Hi! I'm <span class="highlight">Amir Javarsineh</span>, a passionate CyberSecurity Enginieer and Web Developer 
+                        who loves crafting immersive digital experiences.
+                    </p>
+                    <p>
+                        I am an IT professional specializing in Network Engineering, Cybersecurity, and Web Development. I have experience designing secure network infrastructures, implementing cybersecurity solutions, and developing modern web applications.
+
+With a strong foundation in networking, security, and software development, I focus on building reliable, scalable, and secure technology solutions while continuously learning and adapting to new technologies.
+
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years of Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Cups of Tea</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dot dot-red"></div>
+                            <div class="code-dot dot-yellow"></div>
+                            <div class="code-dot dot-green"></div>
+                            <span class="code-title">about.js</span>
+                        </div>
+                        <div class="code-content">
+<pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-property">name</span>: <span class="code-string">"Amir Javarsineh"</span>,
+  <span class="code-property">role</span>: <span class="code-string">"CyberSecurity Enginieer"</span>,
+  <!-- <span class="code-property">location</span>: <span class="code-string">"I Dont Know :)"</span>, -->
+  <span class="code-property">interests</span>: [
+    <span class="code-string">"CyberSecurity"</span>,
+    <span class="code-string">"Netweork Enginieer"</span>,
+    <span class="code-string">"Web Development"</span>,
+    <span class="code-string">"Creative Coding"</span>
+  ],
+  <span class="code-property">currentlyLearning</span>: [
+    <span class="code-string">"SOC Operations"</span>,
+    <span class="code-string">"Advanced Penetration Testing"</span>
+  ],
+    <span class="code-property">funFact</span>: <span class="code-string">"I can build it, secure it, and troubleshoot it."</span>
+};</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category fade-in" style="animation-delay: 0.1s;">
+                <h3>Network & CyberSecurity</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Network+</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Security+</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>CCNA</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Linux</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <!-- <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SOC</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div> -->
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>CEH</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="95%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <h3>Frontend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML/CSS</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Bootstrap</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Tailwind CSS</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SASS</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JQuery</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>AJAX</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in" style="animation-delay: 0.1s;">
+                <h3>Backend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Django</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="70%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>MySQL</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="75%"></div>
+                    </div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>CyberSecurity Enginieer</h3>
+                    <div class="timeline-date">2025 - Present</div>
+                    <p class="timeline-description">
+                        Securing digital infrastructures through proactive defense strategies and security best practices.
+Identifying vulnerabilities, monitoring threats, and strengthening systems against cyber attacks.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Backend Developer</h3>
+                    <div class="timeline-date">2023 - 2024</div>
+                    <p class="timeline-description">
+                            Developing robust and scalable backend systems that power modern applications.
+Designing APIs, managing databases, and optimizing server-side performance for reliable user experiences.
+                        </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.2s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Frontend Developer</h3>
+                    <div class="timeline-date">2022 - 2023</div>
+                    <p class="timeline-description">
+                        Specialized in creating immersive web experiences with advanced CSS animations and JavaScript interactions.
+                        Developed multiple creative projects showcasing interactive animations and experimental UI.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Bachelor of Science in Computer Engineering</h3>
+                    <div class="timeline-date">2024 - Present</div>
+                    <p class="timeline-description">
+                        
+Gained a solid foundation in software engineering, networking, cybersecurity, and modern computing technologies.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Self-Learning & Online Courses</h3>
+                    <div class="timeline-date">2019 - Present</div>
+                    <p class="timeline-description">
+                        Continuously learning new technologies through online platforms.
+                        Completed courses in React, Node.js, UI/UX Design, and advanced JavaScript.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications & Awards</h2>
+        <div class="certifications-grid">
+
+            <div class="cert-card fade-in" style="animation-delay: 0.2s;">
+                <div class="cert-icon">
+    <i class="fa-solid fa-network-wired"></i>
+</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Network+</div>
+                        <div class="cert-issuer">Maktabkhooneh</div>
+                    </div>
+                </div>
+                <h3>Completed the CompTIA Network+</h3>
+                <p class="cert-description">
+                   Developed a strong foundation in networking concepts, routing and switching, network security, troubleshooting, and infrastructure management. Gained practical skills in designing, maintaining, and securing modern network environments.
+
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2026</span>
+                    <a href="https://www.maktabkhooneh.org/certificates/MK-TBE1HC/" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.3s;">
+               <div class="cert-icon">
+    <i class="fa-solid fa-shield-halved"></i>
+</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Security+</div>
+                        <div class="cert-issuer">Maktabkhooneh</div>
+                    </div>
+                </div>
+                <h3>Completed the CompTIA Security+</h3>
+                <p class="cert-description">
+                    Developed a strong foundation in cybersecurity principles, risk management, threat analysis, network security, and incident response. Acquired practical skills in protecting systems, networks, and data against modern cyber threats.
+
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2026</span>
+                    <a href="https://www.maktabkhooneh.org/certificates/MK-UUPIHK/" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.4s;">
+               <div class="cert-icon">
+    <i class="fa-solid fa-server"></i>
+</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">CCNA</div>
+                        <div class="cert-issuer">Maktabkhooneh</div>
+                    </div>
+                </div>
+                <h3>Cisco CCNA</h3>
+                <p class="cert-description">
+                    Developed practical skills in routing and switching, IP networking, network security, and troubleshooting. Acquired hands-on experience with Cisco networking technologies and enterprise network administration.
+
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2026</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+
+            <div class="cert-card fade-in" style="animation-delay: 0.5s;">
+                <div class="cert-icon">
+    <i class="fa-solid fa-user-secret"></i>
+</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">CEH</div>
+                        <div class="cert-issuer">Maktabkhooneh</div>
+                    </div>
+                </div>
+                <h3>Certified Ethical Hacker</h3>
+                <p class="cert-description">
+                    Developed hands-on skills in ethical hacking, penetration testing, vulnerability assessment, and cybersecurity best practices. Learned to identify, analyze, and mitigate security risks across modern IT environments.
+
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2026</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in">
+                <div class="cert-icon">
+    <i class="fa-brands fa-html5"></i>
+</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">FrontEnd Web Development</div>
+                        <div class="cert-issuer">Quera</div>
+                    </div>
+                </div>
+                <h3>Project-Oriented Course</h3>
+                <p class="cert-description">
+                    Completed comprehensive curriculum covering HTML5, CSS3, Flexbox, Grid, Bootstrap, Tailwind, SASS, Javasript, JQuery, AJAX.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">July - 2024</span>
+                    <a href="https://quera.org/certificate/SQ9bvyLM/" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
+               <div class="cert-icon">
+    <i class="fa-solid fa-database"></i>
+</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">SQL</div>
+                        <div class="cert-issuer">Quera</div>
+                    </div>
+                </div>
+                <h3>Task-Oreinted Course in SQL</h3>
+                <p class="cert-description">
+                    Learned database fundamentals, SQL queries, joins, data analysis, and database management techniques. Developed practical skills in working with relational databases and efficient data retrieval.
+
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">Sep - 2023</span>
+                    <a href="https://quera.org/certificate/F8DCy75T/" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            
+
+            <div class="cert-card fade-in" style="animation-delay: 0.6s;">
+                <div class="cert-icon">
+    <i class="fa-solid fa-diagram-project"></i>
+</div>
+                <div class="cert-badge award-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Data Structures & Algorithms</div>
+                        <div class="cert-issuer">Razi University</div>
+                    </div>
+                </div>
+                <h3>Competitive Programming and Problem Solver</h3>
+                <p class="cert-description">
+                    Focused on competitive programming and algorithmic problem solving, covering data structures, graph algorithms, dynamic programming, greedy techniques, and complexity optimization. Strengthened analytical thinking and coding efficiency through solving challenging programming problems and participating in algorithmic competitions.
+
+
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <h3>� Portfolio Site</h3>
+                <p>Modern portfolio with cyber-inspired design, terminal aesthetics, and smooth animations. <span class="project-sign">(by serozr)</span></p>
+                <a href="#" class="project-link">View More &rarr;</a>
+            </div>
+            
+            <div class="project-card fade-in" style="animation-delay: 0.1s;">
+                <h3>💻 Web Applications</h3>
+                <p>Full-stack web applications with modern frameworks, responsive design, and optimized performance.</p>
+                <a href="#" class="project-link">Explore &rarr;</a>
+            </div>
+            
+            <div class="project-card fade-in" style="animation-delay: 0.2s;">
+                <h3>🎨 UI/UX Projects</h3>
+                <p>Creative design projects focusing on user experience and modern interface design principles.</p>
+                <a href="#contact" class="project-link">Get Notified &rarr;</a>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- <section id="blog">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-grid">
+            <div class="blog-card fade-in">
+                <div class="blog-header">
+                    <div class="blog-date">October 15, 2025</div>
+                </div>
+                <div class="blog-body">
+                    <h3>Building Immersive Web Experiences <span class="post-sign">— serozr</span></h3>
+                    <div class="blog-tags">
+                        <span class="blog-tag">JavaScript</span>
+                        <span class="blog-tag">CSS Animations</span>
+                        <span class="blog-tag">WebGL</span>
+                    </div>
+                    <p>Exploring advanced techniques for creating psychedelic and interactive web experiences using vanilla JavaScript and CSS...</p>
+                    <a href="#" class="project-link">Read More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in" style="animation-delay: 0.1s;">
+                <div class="blog-header">
+                    <div class="blog-date">October 10, 2025</div>
+                </div>
+                <div class="blog-body">
+                    <h3>Modern Web Design Trends</h3>
+                    <div class="blog-tags">
+                        <span class="blog-tag">UI/UX</span>
+                        <span class="blog-tag">Design</span>
+                        <span class="blog-tag">Trends</span>
+                    </div>
+                    <p>A deep dive into cyberpunk aesthetics, glassmorphism, and terminal-inspired designs that are shaping the future of web...</p>
+                    <a href="#" class="project-link">Read More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in" style="animation-delay: 0.2s;">
+                <div class="blog-header">
+                    <div class="blog-date">October 5, 2025</div>
+                </div>
+                <div class="blog-body">
+                    <h3>Performance Optimization Tips</h3>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Performance</span>
+                        <span class="blog-tag">Optimization</span>
+                        <span class="blog-tag">Best Practices</span>
+                    </div>
+                    <p>Learn how to optimize heavy animations and interactive elements without sacrificing visual appeal and user experience...</p>
+                    <a href="#" class="project-link">Read More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-item fade-in">
+    <div class="contact-icon">
+        <i class="fa-solid fa-envelope"></i>
+    </div>
+    <h3>Email</h3>
+    <a href="mailto:amirjavarsineh7@gmail.com">amirjavarsineh7@gmail.com</a>
+</div>
+
+<div class="contact-item fade-in" style="animation-delay: 0.1s;">
+    <div class="contact-icon">
+        <i class="fa-brands fa-github"></i>
+    </div>
+    <h3>GitHub</h3>
+    <a href="https://github.com/amirjavarsineh" target="_blank">github.com/amirjavarsineh</a>
+</div>
+
+<div class="contact-item fade-in" style="animation-delay: 0.2s;">
+    <div class="contact-icon">
+        <i class="fa-brands fa-linkedin"></i>
+    </div>
+    <h3>LinkedIn</h3>
+    <a href="https://linkedin.com/in/amirjavarsineh" target="_blank">linkedin.com/in/amirjavarsineh</a>
+</div>
+
+                <!-- <div class="contact-item fade-in" style="animation-delay: 0.3s;">
+                    <div class="contact-icon">🐦</div>
+                    <h3>Twitter</h3>
+                    <a href="https://twitter.com/serodxr" target="_blank">@amirjavarsineh</a>
+                </div> -->
+            </div>
+
+            <!-- <div class="contact-form fade-in">
+                <form>
+                    <div class="form-group">
+                        <label>$ name --input</label>
+                        <input type="text" placeholder="serozr" required>
+                        <small class="field-sign">Signed by serozr</small>
+                    </div>
+                    <div class="form-group">
+                        <label>$ email --input</label>
+                        <input type="email" placeholder="serozr@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>$ message --input</label>
+                        <textarea placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div> -->
+        </div>
+    </section>
+
+    <footer>
+    <p>&copy; 2026 <span class="signature">Amir Javarsineh</span>. All rights reserved.</p>
+        <!-- <p style="margin-top: 0.5rem; font-size: 0.9rem;">Made with ❤️ using HTML, CSS & JavaScript</p> -->
+        <p style="margin-top: 0.25rem; font-size: 0.8rem; color: #bbb;">Site signed and maintained by <strong>Amir Javarsineh</strong></p>
+    </footer>
+
+
+    <script src="src/js/main.js"></script>
+</body>
+</html>
+
+<!-- End of file - signed: serozr -->
