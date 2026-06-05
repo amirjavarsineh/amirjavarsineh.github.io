@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 
+=======
+/* signed: Amir Javarsineh */
+/*
+    File: animations.css
+    Purpose: animation keyframes used across the site
+    Signed by: Amir Javarsineh
+*/
+>>>>>>> 7665328 ('update')
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -30,3 +39,7 @@
     50% { opacity: 0.7; }
 }
 
+<<<<<<< HEAD
+=======
+/* End of file - signed: Amir Javarsineh */
+>>>>>>> 7665328 ('update')
