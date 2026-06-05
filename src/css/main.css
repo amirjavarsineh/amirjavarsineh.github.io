@@ -822,4 +822,72 @@ footer .signature { color: var(--green); font-weight: bold; cursor: pointer; }
     section { padding: 1rem; }
 }
 
+/* Certificate image preview */
+.cert-img-wrap {
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    position: relative;
+}
+
+.cert-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    object-position: top;
+}
+
+.cert-img-wrap:hover img { transform: scale(1.03); }
+
+.cert-img-wrap::after {
+    content: '🔍';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.cert-img-wrap:hover::after { opacity: 1; }
+
+/* Lightbox */
+.cert-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    cursor: zoom-out;
+}
+.cert-lightbox.open { display: flex; }
+.cert-lightbox img {
+    max-width: min(900px, 95vw);
+    max-height: 90dvh;
+    border-radius: 10px;
+    box-shadow: 0 0 60px rgba(0,255,140,0.3);
+    object-fit: contain;
+}
+.cert-lightbox-close {
+    position: absolute;
+    top: 1rem; right: 1.2rem;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+}
+
 /* End of file - signed: Amir Javarsineh */

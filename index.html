@@ -296,6 +296,9 @@
                         <div class="cert-issuer">Maktabkhooneh</div>
                     </div>
                 </div>
+                <div class="cert-img-wrap" onclick="openLightbox('src/img/certs/network-plus.png')">
+    <img src="src/img/certs/network-plus.png" alt="CompTIA Network+ Certificate" loading="lazy">
+</div>
                 <h3>Completed the CompTIA Network+</h3>
                 <p class="cert-description">Developed a strong foundation in networking concepts, routing and switching, network security, troubleshooting, and infrastructure management.</p>
                 <div class="cert-footer">
@@ -311,6 +314,9 @@
                         <div class="cert-issuer">Maktabkhooneh</div>
                     </div>
                 </div>
+                <div class="cert-img-wrap" onclick="openLightbox('src/img/certs/security-plus.png')">
+    <img src="src/img/certs/security-plus.png" alt="CompTIA Security+ Certificate" loading="lazy">
+</div>
                 <h3>Completed the CompTIA Security+</h3>
                 <p class="cert-description">Developed a strong foundation in cybersecurity principles, risk management, threat analysis, network security, and incident response.</p>
                 <div class="cert-footer">
@@ -356,6 +362,9 @@
                         <div class="cert-issuer">Quera</div>
                     </div>
                 </div>
+                <div class="cert-img-wrap" onclick="openLightbox('src/img/certs/frontend-quera.jpg')">
+    <img src="src/img/certs/frontend-quera.jpg" alt="Frontend Web Development Certificate" loading="lazy">
+</div>
                 <h3>Project-Oriented Course</h3>
                 <p class="cert-description">Completed comprehensive curriculum covering HTML5, CSS3, Flexbox, Grid, Bootstrap, Tailwind, SASS, Javascript, JQuery, AJAX.</p>
                 <div class="cert-footer">
@@ -371,6 +380,9 @@
                         <div class="cert-issuer">Quera</div>
                     </div>
                 </div>
+                <div class="cert-img-wrap" onclick="openLightbox('src/img/certs/sql-quera.jpg')">
+    <img src="src/img/certs/sql-quera.jpg" alt="SQL Course Certificate" loading="lazy">
+</div>
                 <h3>Task-Oriented Course in SQL</h3>
                 <p class="cert-description">Learned database fundamentals, SQL queries, joins, data analysis, and database management techniques.</p>
                 <div class="cert-footer">
@@ -421,7 +433,27 @@
         <p style="margin-top: 0.25rem; font-size: 0.8rem; color: #bbb;">Site signed and maintained by <strong>Amir Javarsineh</strong></p>
     </footer>
 
+    <!-- Certificate Lightbox -->
+    <div class="cert-lightbox" id="certLightbox" onclick="closeLightbox()">
+        <button class="cert-lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <img id="certLightboxImg" src="" alt="Certificate">
+    </div>
+
     <script src="src/js/main.js"></script>
+    <script>
+        function openLightbox(src) {
+            document.getElementById('certLightboxImg').src = src;
+            document.getElementById('certLightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('certLightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 </body>
 </html>
 <!-- End of file - signed: Amir Javarsineh -->
