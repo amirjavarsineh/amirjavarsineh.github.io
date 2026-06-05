@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-
-=======
-// signed: Amir Javarsineh
+// signed: serozr
 /*
     File: main.js
     Purpose: handles boot screen, observers and UI interactions
-    Signed by: Amir Javarsineh
+    Signed by: serozr
 */
->>>>>>> 7665328 ('update')
 // Boot Screen Animation
 document.addEventListener('DOMContentLoaded', () => {
     const bootScreen = document.getElementById('bootScreen');
@@ -126,8 +122,4 @@ window.addEventListener('scroll', () => {
     }, 150);
 }, { passive: true });
 
-<<<<<<< HEAD
-// End of file 
-=======
-// End of file - signed: Amir Javarsineh
->>>>>>> 7665328 ('update')
+// End of file - signed: serozr
