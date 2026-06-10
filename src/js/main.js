@@ -349,12 +349,12 @@ Passionate about building secure systems and creative coding.`;
 - <span class="cmd-highlight">exit</span> : Close fullscreen mode`;
         },
         skills: () => {
-            return `CyberSecurity: Network Security(90%) | Penetration Testing(85%) | SOC(75%) | Vuln Assessment(80%) | Wireshark(80%)<br>
-Networking: Network Eng(88%) | CCNA(85%) | TCP/IP(90%) | Firewall/VPN(75%) | Routing(75%) | VLANs(75%)<br>
-SysAdmin: Windows Server(80%) | AD(78%) | GPO(75%) | DNS/DHCP(80%) | VMware(75%) | Virtualization(78%) | Hyper-V(70%)<br>
-Programming: Python(75%) | C(70%) | OOP(80%) | Data Structures(75%) | Linux(85%) | Git(80%)<br>
-Backend/Database: Django(70%) | MySQL(70%) | PostgreSQL(65%) | DBMS(72%)<br>
-Frontend: HTML/CSS(95%) | JS(85%) | Bootstrap/Tailwind(88%) | SASS(78%) | jQuery/AJAX(80%)`;
+            return `CyberSecurity: Network Security | Penetration Testing | SOC | Vuln Assessment | Wireshark <br> <br>
+Networking: Network Eng | CCNA | TCP/IP | Firewall/VPN | Routing | VLANs<br> <br>
+SysAdmin: Windows Server | AD | GPO | DNS/DHCP | VMware | Virtualization | Hyper-V<br> <br>
+Programming: Python | C | OOP | Data Structures | Linux | Git<br> <br>
+Backend/Database: Django | MySQL | PostgreSQL | DBMS<br> <br>
+Frontend: HTML/CSS | JS | Bootstrap/Tailwind | SASS| jQuery/AJAX`;
         },
         contact: () => {
             return `Email: amirjavarsineh7@gmail.com<br>
