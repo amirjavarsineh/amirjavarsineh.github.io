@@ -1207,3 +1207,333 @@ footer .signature { color: var(--green); font-weight: bold; cursor: pointer; }
 
 
 
+
+
+
+
+
+/* ============================================
+   Hacker Chatbot Styles
+   ============================================ */
+
+#hacker-chatbot {
+    scroll-margin-top: 80px;
+    margin-bottom: 2rem;
+}
+
+.chatbot-container {
+    max-width: 700px;
+    margin: 2rem auto;
+}
+
+.chatbot-terminal {
+    background: #0a0a0a;
+    border: 1px solid var(--green);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 140, 0.15);
+}
+
+.chatbot-header {
+    background: #111;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--green);
+    font-family: monospace;
+}
+
+.chatbot-header i {
+    font-size: 1.2rem;
+}
+
+.chatbot-header span {
+    flex: 1;
+}
+
+.chatbot-clear-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+.chatbot-clear-btn:hover {
+    color: #f44;
+}
+
+.chatbot-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: #000;
+}
+
+.chatbot-message {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 0.3rem 0.6rem;
+    border-left: 3px solid var(--green);
+    color: #cfc;
+    word-break: break-word;
+}
+
+.chatbot-message.bot {
+    color: #0f0;
+}
+
+.chatbot-message.user {
+    color: #0ff;
+    border-left-color: #0ff;
+    text-align: right;
+}
+
+.chatbot-input-line {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #333;
+    background: #0a0a0a;
+    padding: 0.6rem 1rem;
+    gap: 0.5rem;
+}
+
+.chatbot-input-line .prompt {
+    color: var(--green);
+    font-weight: bold;
+}
+
+#chatbotInput {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    color: #0f0;
+    font-family: monospace;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+#chatbotInput:focus {
+    border-color: var(--green);
+}
+
+#chatbotSendBtn {
+    background: #1e1e1e;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.45rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: monospace;
+    transition: 0.2s;
+}
+
+#chatbotSendBtn:hover {
+    background: var(--green);
+    color: #000;
+}
+
+.chatbot-footer {
+    font-size: 0.65rem;
+    color: #666;
+    text-align: center;
+    padding: 0.5rem;
+    border-top: 1px solid #222;
+    background: #0a0a0a;
+}
+
+
+
+
+.chatbot-hero {
+    max-width: 700px;
+    margin: 1.5rem auto;
+    width: 100%;
+}
+
+
+#hacker-chatbot {
+    scroll-margin-top: 80px;
+    margin-bottom: 2rem;
+}
+
+.chatbot-container {
+    max-width: 900px;   /* افزایش از 700px به 900px */
+    width: 95%;
+    margin: 2rem auto;
+}
+
+/* استایل مخصوص چت‌بات داخل hero (صفحه اصلی) */
+.chatbot-hero {
+    max-width: 900px;   /* افزایش عرض */
+    width: 95%;
+    margin: 1.5rem auto;
+}
+
+.chatbot-terminal {
+    background: #0a0a0a;
+    border: 1px solid var(--green);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 140, 0.15);
+}
+
+/* برای موبایل: عرض تقریباً کامل با حاشیه کم */
+@media (max-width: 768px) {
+    .chatbot-container,
+    .chatbot-hero {
+        max-width: 98%;
+        width: 98%;
+        margin: 1rem auto;
+    }
+}
+
+
+
+
+/* تنظیم متن چپ‌چین برای چت‌بات و ترمینال */
+.chatbot-messages,
+.chatbot-message,
+.terminal-line,
+.terminal-body,
+.chatbot-input-line,
+.chatbot-input-line .prompt,
+#chatbotHeroInput,
+#chatbotInput {
+    text-align: left !important;
+}
+
+.chatbot-message.user {
+    text-align: left !important; /* پیام کاربر راست باشد */
+}
+
+.chatbot-message.bot {
+    text-align: left !important;
+}
+
+
+/* ============================================
+   بهبود استایل بخش ورود فرمان در چت‌بات
+   ============================================ */
+
+.chatbot-input-line {
+    display: flex;
+    align-items: center;
+    background: #0a0a0a;
+    border-top: 1px solid #2a2a2a;
+    padding: 0.8rem 1rem;
+    gap: 0.6rem;
+}
+
+.chatbot-input-line .prompt {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+}
+
+#chatbotHeroInput, #chatbotInput {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+#chatbotHeroInput:focus, #chatbotInput:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 8px rgba(0, 255, 140, 0.3);
+    background: #0a0a0a;
+}
+
+#chatbotHeroSendBtn, #chatbotSendBtn {
+    background: #1e1e1e;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+#chatbotHeroSendBtn:hover, #chatbotSendBtn:hover {
+    background: var(--green);
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 255, 140, 0.4);
+}
+
+
+
+
+/* ============================================
+   Matrix Digital Clock (compact)
+   ============================================ */
+
+.matrix-clock-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.matrix-digital-clock {
+    background: #000;
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    padding: 0.3rem 1rem;
+    display: inline-flex;
+    gap: 1.5rem;
+    align-items: baseline;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 8px rgba(0, 255, 140, 0.2);
+}
+
+#matrixDigitalClock {
+    color: #0f0;
+}
+
+#clockTime {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 3px #0f0;
+}
+
+.clock-date {
+    font-size: 0.75rem;
+    color: #0a0;
+    letter-spacing: 1px;
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 550px) {
+    .matrix-digital-clock {
+        padding: 0.2rem 0.6rem;
+        gap: 0.8rem;
+    }
+    #clockTime {
+        font-size: 1rem;
+    }
+    .clock-date {
+        font-size: 0.6rem;
+    }
+}

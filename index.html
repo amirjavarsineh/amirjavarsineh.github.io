@@ -118,8 +118,15 @@
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="icon" type="image/png" href="logo.png" sizes="32x32">
-
+    <!-- Favicon for modern browsers and search engines -->
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="logo.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="logo.png">
+    <link rel="shortcut icon" href="favicon.ico"> <!-- اگر فایل ico دارید -->
+    <!-- برای دستگاه‌های اپل -->
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
@@ -191,17 +198,30 @@
         <h1>Amir Javarsineh <br> <span lang="fa">امیر جاورسینه</span></h1>
             <p class="subtitle">CyberSecurity Engineer <br> Network Engineer <br> Web Developer</p>
 
-<div class="terminal-window interactive-terminal">
-    <div class="terminal-header">
-        <div class="terminal-dot dot-red"></div>
-        <div class="terminal-dot dot-yellow"></div>
-        <div class="terminal-dot dot-green"></div>
-        <span class="terminal-title">guest@amir:~</span>
+
+
+    <!-- Matrix Digital Clock -->
+    <div class="matrix-clock-wrapper">
+        <div id="matrixDigitalClock" class="matrix-digital-clock">
+            <span id="clockTime">--:--:--</span>
+            <span id="clockDate" class="clock-date">----/--/--</span>
+        </div>
     </div>
-    <div class="terminal-body" id="terminalBody">
-        <div class="terminal-line">Welcome to Amir Javarsineh's interactive terminal.</div>
-        <div class="terminal-line">Type <span class="cmd-highlight">help</span> to see available commands.</div>
-        <div class="terminal-line"><span class="prompt">$</span> <span class="command-input" contenteditable="true" id="commandInput"></span><span class="cursor">|</span></div>
+
+<!-- Chatbot  ترمینال -->
+<div class="chatbot-terminal chatbot-hero">
+    <div class="chatbot-header">
+        <i class="fa-solid fa-terminal"></i>
+        <span>guest@amir:~ (chat mode)</span>
+        <button id="chatbotClearHeroBtn" class="chatbot-clear-btn" title="Clear chat">🗑️</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotHeroMessages">
+        <div class="chatbot-message bot">> Welcome to Amir Javarsineh's interactive chatbot. Type <span class="cmd-highlight">help</span> to see commands.</div>
+    </div>
+    <div class="chatbot-input-line">
+        <span class="prompt">$</span>
+        <input type="text" id="chatbotHeroInput" placeholder="enter command..." autocomplete="off">
+        <button id="chatbotHeroSendBtn">Send</button>
     </div>
 </div>
 
@@ -689,6 +709,12 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
 
     <footer>
         <p>&copy; 2026 <span class="signature">Amir Javarsineh</span> <span lang="fa">(امیر جاورسینه)</span>. All rights reserved.</p>
