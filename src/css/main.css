@@ -1537,3 +1537,156 @@ footer .signature { color: var(--green); font-weight: bold; cursor: pointer; }
         font-size: 0.6rem;
     }
 }
+
+
+
+
+
+
+
+/* ============================================
+   ابزارهای حرفه‌ای شبکه و سیستم
+   ============================================ */
+
+#useful-tools {
+    scroll-margin-top: 80px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.8rem;
+    margin: 2rem 0;
+}
+
+.tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green);
+    box-shadow: 0 0 20px rgba(0, 255, 140, 0.15);
+}
+
+.tool-card h3 {
+    color: var(--green);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tool-card p {
+    color: var(--dim);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.tool-input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tool-input-group input,
+.tool-input-group select {
+    flex: 1;
+    min-width: 100px;
+    padding: 0.6rem 0.8rem;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.tool-input-group input:focus {
+    outline: none;
+    border-color: var(--green);
+}
+
+.tool-btn {
+    background: #1e1e1e;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.tool-btn:hover {
+    background: var(--green);
+    color: #000;
+    box-shadow: 0 0 8px rgba(0, 255, 140, 0.3);
+}
+
+.tool-output {
+    background: #0a0a0a;
+    border-left: 3px solid var(--green);
+    padding: 0.7rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #0f0;
+    border-radius: 6px;
+    word-break: break-word;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.tools-note {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+@media (max-width: 720px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    .tool-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+#useful-tools {
+    scroll-margin-top: 80px;
+}
+
+
+.tool-card textarea {
+    width: 100%;
+    padding: 0.6rem;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 0.85rem;
+    resize: vertical;
+}
+.tool-card textarea:focus {
+    outline: none;
+    border-color: var(--green);
+}
+.tool-card input[type="number"],
+.tool-card input[type="password"] {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 0.5rem;
+    color: #0f0;
+}

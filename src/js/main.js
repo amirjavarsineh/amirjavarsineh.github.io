@@ -774,3 +774,550 @@ Cron jobs: backup.sh every 5 min<br>
     updateClock();
     setInterval(updateClock, 1000);
 })();
+
+
+
+
+
+
+// ============================================
+// Useful Tools: Complete Set (with accurate date converter)
+// ============================================
+
+(function initUsefulTools() {
+    // ---------- 1. Subnet Calculator ----------
+    const subnetBtn = document.getElementById('calcSubnetBtn');
+    const subnetIp = document.getElementById('subnetIp');
+    const subnetCidr = document.getElementById('subnetCidr');
+    const subnetOutput = document.getElementById('subnetOutput');
+    
+    function calculateSubnet(ip, cidr) {
+        const cidrNum = parseInt(cidr);
+        if (isNaN(cidrNum) || cidrNum < 0 || cidrNum > 32) return 'Invalid CIDR (0-32)';
+        const ipParts = ip.split('.').map(Number);
+        if (ipParts.length !== 4 || ipParts.some(p => isNaN(p) || p < 0 || p > 255)) return 'Invalid IP address';
+        
+        const mask = (0xFFFFFFFF << (32 - cidrNum)) >>> 0;
+        const ipInt = (ipParts[0] << 24) | (ipParts[1] << 16) | (ipParts[2] << 8) | ipParts[3];
+        const networkInt = ipInt & mask;
+        const broadcastInt = networkInt | (~mask >>> 0);
+        const firstHost = networkInt + 1;
+        const lastHost = broadcastInt - 1;
+        const totalHosts = broadcastInt - networkInt - 1;
+        
+        function intToIp(int) {
+            return [(int >>> 24) & 255, (int >>> 16) & 255, (int >>> 8) & 255, int & 255].join('.');
+        }
+        
+        return `
+Network Address: ${intToIp(networkInt)}<br>
+Broadcast: ${intToIp(broadcastInt)}<br>
+First Usable: ${intToIp(firstHost)}<br>
+Last Usable: ${intToIp(lastHost)}<br>
+Total Hosts: ${totalHosts}<br>
+Wildcard Mask: ${intToIp(~mask >>> 0)}
+        `;
+    }
+    if (subnetBtn) {
+        subnetBtn.addEventListener('click', () => {
+            subnetOutput.innerHTML = calculateSubnet(subnetIp.value.trim(), subnetCidr.value.trim());
+        });
+        subnetBtn.click();
+    }
+
+    // ---------- 2. IPv4 ↔ Binary ----------
+    const ipInput = document.getElementById('ipInput');
+    const binaryOutput = document.getElementById('binaryOutput');
+    const ipToBinaryBtn = document.getElementById('ipToBinaryBtn');
+    const binaryInput = document.getElementById('binaryInput');
+    const ipOutput = document.getElementById('ipOutput');
+    const binaryToIpBtn = document.getElementById('binaryToIpBtn');
+    
+    function isValidIp(ip) {
+        const parts = ip.split('.');
+        if (parts.length !== 4) return false;
+        return parts.every(part => {
+            const num = parseInt(part, 10);
+            return !isNaN(num) && num >= 0 && num <= 255 && part === num.toString();
+        });
+    }
+    function ipToBinary(ip) {
+        return ip.split('.').map(Number).map(p => p.toString(2).padStart(8, '0')).join('.');
+    }
+    function isValidBinary(bin) {
+        const parts = bin.split('.');
+        if (parts.length !== 4) return false;
+        return parts.every(part => /^[01]{8}$/.test(part));
+    }
+    function binaryToIp(bin) {
+        return bin.split('.').map(part => parseInt(part, 2)).join('.');
+    }
+    if (ipToBinaryBtn) {
+        ipToBinaryBtn.addEventListener('click', () => {
+            const ip = ipInput.value.trim();
+            if (!isValidIp(ip)) {
+                binaryOutput.innerHTML = '❌ Invalid IP address. Use format: 192.168.1.1';
+                return;
+            }
+            binaryOutput.innerHTML = `<strong>Binary:</strong> ${ipToBinary(ip)}`;
+        });
+    }
+    if (binaryToIpBtn) {
+        binaryToIpBtn.addEventListener('click', () => {
+            const bin = binaryInput.value.trim();
+            if (!isValidBinary(bin)) {
+                ipOutput.innerHTML = '❌ Invalid binary. Use 8 bits per octet separated by dots.';
+                return;
+            }
+            ipOutput.innerHTML = `<strong>IP Address:</strong> ${binaryToIp(bin)}`;
+        });
+    }
+
+    // ---------- 3. Password & Username Generator ----------
+    const pwdBtn = document.getElementById('generatePwdBtn');
+    const pwdLength = document.getElementById('pwdLength');
+    const pwdOutput = document.getElementById('pwdOutput');
+    const usernameBtn = document.getElementById('generateUsernameBtn');
+    const usernameOutput = document.getElementById('usernameOutput');
+    
+    function generatePassword(len) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-[]{};:<>?';
+        let pwd = '';
+        for (let i = 0; i < len; i++) pwd += chars[Math.floor(Math.random() * chars.length)];
+        return pwd;
+    }
+    function generateUsername() {
+        const adjectives = ['Cool', 'Happy', 'Fast', 'Smart', 'Dark', 'Light', 'Cyber', 'Net', 'Safe', 'True'];
+        const nouns = ['Hacker', 'Engineer', 'Dev', 'Admin', 'User', 'Geek', 'Master', 'Coder', 'Pro', 'Wizard'];
+        const num = Math.floor(Math.random() * 1000);
+        return adjectives[Math.floor(Math.random() * adjectives.length)] +
+               nouns[Math.floor(Math.random() * nouns.length)] + num;
+    }
+    if (pwdBtn) {
+        pwdBtn.addEventListener('click', () => {
+            let len = parseInt(pwdLength.value);
+            if (isNaN(len)) len = 12;
+            len = Math.min(32, Math.max(4, len));
+            pwdOutput.innerHTML = `<span style="word-break:break-all;">${generatePassword(len)}</span>`;
+        });
+        pwdBtn.click();
+    }
+    if (usernameBtn) {
+        usernameBtn.addEventListener('click', () => {
+            usernameOutput.innerHTML = `<span style="word-break:break-all;">${generateUsername()}</span>`;
+        });
+        usernameBtn.click();
+    }
+
+    // ---------- 4. Unit Converter ----------
+    const convType = document.getElementById('convType');
+    const convValue = document.getElementById('convValue');
+    const fromUnit = document.getElementById('fromUnit');
+    const toUnit = document.getElementById('toUnit');
+    const convertBtn = document.getElementById('convertBtn');
+    const convOutput = document.getElementById('convOutput');
+    
+    // تعریف واحدها و عوامل تبدیل به یکای پایه (SI یا مرجع)
+    const unitSets = {
+        length: {
+            units: ['mm', 'cm', 'm', 'km', 'in', 'ft', 'yd', 'mile'],
+            toBase: { mm:0.001, cm:0.01, m:1, km:1000, in:0.0254, ft:0.3048, yd:0.9144, mile:1609.344 },
+            fromBase: (val, unit) => val / unitSets.length.toBase[unit]
+        },
+        weight: {
+            units: ['mg', 'g', 'kg', 'ton', 'oz', 'lb'],
+            toBase: { mg:0.000001, g:0.001, kg:1, ton:1000, oz:0.0283495, lb:0.453592 },
+            fromBase: (val, unit) => val / unitSets.weight.toBase[unit]
+        },
+        temp: { special: true },  // handled separately
+        time: {
+            units: ['sec', 'min', 'hour', 'day', 'week'],
+            toBase: { sec:1, min:60, hour:3600, day:86400, week:604800 },
+            fromBase: (val, unit) => val / unitSets.time.toBase[unit]
+        },
+        speed: {
+            units: ['m/s', 'km/h', 'mph', 'knot'],
+            toBase: { 'm/s':1, 'km/h':0.2777777778, 'mph':0.44704, 'knot':0.5144444444 },
+            fromBase: (val, unit) => val / unitSets.speed.toBase[unit]
+        },
+        volume: {
+            units: ['ml', 'L', 'm3', 'ft3', 'gal_us'],
+            toBase: { ml:0.000001, L:0.001, m3:1, ft3:0.0283168, gal_us:0.00378541 },
+            fromBase: (val, unit) => val / unitSets.volume.toBase[unit]
+        },
+        area: {
+            units: ['m2', 'km2', 'ft2', 'acre'],
+            toBase: { m2:1, km2:1000000, ft2:0.092903, acre:4046.86 },
+            fromBase: (val, unit) => val / unitSets.area.toBase[unit]
+        },
+        energy: {
+            units: ['J', 'kJ', 'cal', 'kcal', 'Wh'],
+            toBase: { J:1, kJ:1000, cal:4.184, kcal:4184, Wh:3600 },
+            fromBase: (val, unit) => val / unitSets.energy.toBase[unit]
+        },
+        pressure: {
+            units: ['Pa', 'kPa', 'bar', 'psi'],
+            toBase: { Pa:1, kPa:1000, bar:100000, psi:6894.76 },
+            fromBase: (val, unit) => val / unitSets.pressure.toBase[unit]
+        }
+    };
+    
+    function updateUnitOptions() {
+        const type = convType.value;
+        let units = [];
+        if (type === 'length') units = unitSets.length.units;
+        else if (type === 'weight') units = unitSets.weight.units;
+        else if (type === 'temp') units = ['Celsius', 'Fahrenheit', 'Kelvin'];
+        else if (type === 'time') units = unitSets.time.units;
+        else if (type === 'speed') units = unitSets.speed.units;
+        else if (type === 'volume') units = unitSets.volume.units;
+        else if (type === 'area') units = unitSets.area.units;
+        else if (type === 'energy') units = unitSets.energy.units;
+        else if (type === 'pressure') units = unitSets.pressure.units;
+        
+        fromUnit.innerHTML = '';
+        toUnit.innerHTML = '';
+        units.forEach(u => {
+            fromUnit.appendChild(new Option(u, u));
+            toUnit.appendChild(new Option(u, u));
+        });
+        if (type === 'temp') {
+            fromUnit.value = 'Celsius';
+            toUnit.value = 'Fahrenheit';
+        } else {
+            fromUnit.value = units[0];
+            toUnit.value = units[1] || units[0];
+        }
+    }
+    
+    // تبدیل دما (دستکاری ویژه)
+    function convertTemperature(value, from, to) {
+        let celsius;
+        if (from === 'Celsius') celsius = value;
+        else if (from === 'Fahrenheit') celsius = (value - 32) * 5/9;
+        else if (from === 'Kelvin') celsius = value - 273.15;
+        else return value;
+        if (to === 'Celsius') return celsius;
+        if (to === 'Fahrenheit') return celsius * 9/5 + 32;
+        if (to === 'Kelvin') return celsius + 273.15;
+        return value;
+    }
+    
+    // تبدیل عمومی برای واحدهای خطی (غیردما)
+    function convertLinear(value, from, to, set) {
+        const baseValue = value * set.toBase[from];
+        return set.fromBase(baseValue, to);
+    }
+    
+    function convert() {
+        const type = convType.value;
+        let value = parseFloat(convValue.value);
+        if (isNaN(value)) { convOutput.innerHTML = 'Invalid number'; return; }
+        let result;
+        
+        if (type === 'temp') {
+            result = convertTemperature(value, fromUnit.value, toUnit.value);
+            convOutput.innerHTML = `${value} ${fromUnit.value} = ${result.toFixed(2)} ${toUnit.value}`;
+        } else {
+            let set;
+            switch (type) {
+                case 'length': set = unitSets.length; break;
+                case 'weight': set = unitSets.weight; break;
+                case 'time': set = unitSets.time; break;
+                case 'speed': set = unitSets.speed; break;
+                case 'volume': set = unitSets.volume; break;
+                case 'area': set = unitSets.area; break;
+                case 'energy': set = unitSets.energy; break;
+                case 'pressure': set = unitSets.pressure; break;
+                default: return;
+            }
+            result = convertLinear(value, fromUnit.value, toUnit.value, set);
+            // انتخاب تعداد ارقام اعشاری مناسب
+            let precision = 6;
+            if (Math.abs(result) < 0.01) precision = 8;
+            if (Math.abs(result) > 1000) precision = 2;
+            convOutput.innerHTML = `${value} ${fromUnit.value} = ${result.toFixed(precision)} ${toUnit.value}`;
+        }
+    }
+    
+    if (convType) {
+        convType.addEventListener('change', updateUnitOptions);
+        updateUnitOptions();
+        convertBtn.addEventListener('click', convert);
+        convValue.addEventListener('input', convert);
+        convert();
+    }
+
+    // ---------- 5. Motivational Quote Generator ----------
+    const newQuoteBtn = document.getElementById('newQuoteBtn');
+    const quoteOutput = document.getElementById('quoteOutput');
+    const quotes = [
+        "The only way to do great work is to love what you do. – Steve Jobs",
+    "Code is like humor. When you have to explain it, it’s bad. – Cory House",
+    "Simplicity is the soul of efficiency. – Austin Freeman",
+    "First, solve the problem. Then, write the code. – John Johnson",
+    "Experience is the name everyone gives to their mistakes. – Oscar Wilde",
+    "The best way to predict the future is to implement it. – David Heinemeier Hansson",
+    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. – Martin Fowler",
+    "Security is not a product, but a process. – Bruce Schneier",
+    "The quieter you become, the more you are able to hear. – Kali Linux",
+    "Stay hungry, stay foolish. – Steve Jobs",
+    "Talk is cheap. Show me the code. – Linus Torvalds",
+    "Software is a gas; it expands to fill its container. – Nathan Myhrvold",
+    "Fix the cause, not the symptom. – Steve Maguire",
+    "Optimism is an occupational hazard of programming. – Kent Beck",
+    "The function of good software is to make the complex appear simple. – Grady Booch",
+    "In theory, theory and practice are the same. In practice, they’re not. – Yoggi Berra",
+    "Make it work, make it right, make it fast. – Kent Beck",
+    "Before software can be reusable it first has to be usable. – Ralph Johnson",
+    "Programming is not about typing, it's about thinking. – Rich Hickey",
+    "The most dangerous phrase in the language is 'We've always done it this way.' – Grace Hopper",
+    "Copy and paste is a design error. – David Parnas",
+    "It's not at all important to get it right the first time. It's vitally important to get it right the last time. – Andrew Hunt",
+    "The only real mistake is the one from which we learn nothing. – Henry Ford",
+    "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. – Antoine de Saint-Exupéry",
+    "The best performance improvement is the transition from the nonworking state to the working state. – J. Osterhout",
+    "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code. – Dan Salomon",
+    "Hardware eventually fails. Software eventually works. – Michael Hart",
+    "It's not a bug – it's an undocumented feature. – Anonymous",
+    "Good code is its own best documentation. – Steve McConnell",
+    "The only way to learn a new programming language is by writing programs in it. – Dennis Ritchie",
+    "Walking on water and developing software from a specification are easy if both are frozen. – Edward V. Berard",
+    "The trouble with programmers is that you can never tell what a programmer is doing until it's too late. – Seymour Cray",
+    "Measuring programming progress by lines of code is like measuring aircraft building progress by weight. – Bill Gates",
+    "Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the universe trying to produce bigger and better idiots. So far, the universe is winning. – Rick Cook",
+    "You can't have great software without a great team, and most software teams behave like dysfunctional families. – Jim McCarthy",
+    "Believe you can and you're halfway there. – Theodore Roosevelt",
+    "It does not matter how slowly you go as long as you do not stop. – Confucius",
+    "Our greatest glory is not in never falling, but in rising every time we fall. – Confucius",
+    "Everything you've ever wanted is on the other side of fear. – George Addair",
+    "Success is walking from failure to failure with no loss of enthusiasm. – Winston Churchill",
+    "The only limit to our realization of tomorrow is our doubts of today. – Franklin D. Roosevelt",
+    "Do what you can, with what you have, where you are. – Theodore Roosevelt",
+    "Act as if what you do makes a difference. It does. – William James",
+    "Keep your face always toward the sunshine—and shadows will fall behind you. – Walt Whitman",
+    "What you get by achieving your goals is not as important as what you become by achieving your goals. – Zig Ziglar"
+    ];
+    if (newQuoteBtn) {
+        newQuoteBtn.addEventListener('click', () => {
+            const random = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteOutput.innerHTML = `“${random}”`;
+        });
+        newQuoteBtn.click();
+    }
+
+
+        // ---------- 7. Text ↔ Binary Converter ----------
+    const textForBinary = document.getElementById('textForBinary');
+    const textToBinaryBtn = document.getElementById('textToBinaryBtn');
+    const binaryResult = document.getElementById('binaryResult');
+    const binaryForText = document.getElementById('binaryForText');
+    const binaryToTextBtn = document.getElementById('binaryToTextBtn');
+    const textResult = document.getElementById('textResult');
+    const copyBinaryResultBtn = document.getElementById('copyBinaryResultBtn');
+    const copyTextResultBtn = document.getElementById('copyTextResultBtn');
+
+    function textToBinary(str) {
+        return str.split('').map(ch => ch.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+    }
+    function binaryToText(bin) {
+        const bytes = bin.trim().split(/\s+/);
+        let result = '';
+        for (let byte of bytes) {
+            if (!/^[01]{8}$/.test(byte)) return '❌ Invalid binary (use 8-bit bytes separated by space)';
+            result += String.fromCharCode(parseInt(byte, 2));
+        }
+        return result;
+    }
+    if (textToBinaryBtn) {
+        textToBinaryBtn.addEventListener('click', () => {
+            const txt = textForBinary.value;
+            if (!txt.trim()) { binaryResult.innerHTML = '⚠️ Enter some text.'; return; }
+            binaryResult.innerHTML = textToBinary(txt);
+        });
+    }
+    if (binaryToTextBtn) {
+        binaryToTextBtn.addEventListener('click', () => {
+            const bin = binaryForText.value.trim();
+            if (!bin) { textResult.innerHTML = '⚠️ Enter binary.'; return; }
+            textResult.innerHTML = binaryToText(bin);
+        });
+    }
+    if (copyBinaryResultBtn) {
+        copyBinaryResultBtn.addEventListener('click', () => {
+            const txt = binaryResult.innerText;
+            if (txt && !txt.includes('⚠️')) { navigator.clipboard.writeText(txt); copyBinaryResultBtn.textContent = '✓ Copied!'; setTimeout(() => copyBinaryResultBtn.textContent = 'Copy Binary', 1500); }
+        });
+    }
+    if (copyTextResultBtn) {
+        copyTextResultBtn.addEventListener('click', () => {
+            const txt = textResult.innerText;
+            if (txt && !txt.includes('⚠️')) { navigator.clipboard.writeText(txt); copyTextResultBtn.textContent = '✓ Copied!'; setTimeout(() => copyTextResultBtn.textContent = 'Copy Text', 1500); }
+        });
+    }
+
+    // ---------- 8. Random Number Generator ----------
+    const randMin = document.getElementById('randMin');
+    const randMax = document.getElementById('randMax');
+    const generateRandomBtn = document.getElementById('generateRandomBtn');
+    const randomResult = document.getElementById('randomResult');
+    if (generateRandomBtn) {
+        generateRandomBtn.addEventListener('click', () => {
+            let min = parseInt(randMin.value);
+            let max = parseInt(randMax.value);
+            if (isNaN(min)) min = 1;
+            if (isNaN(max)) max = 100;
+            if (min > max) { [min, max] = [max, min]; }
+            const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+            randomResult.innerHTML = `Random number: <strong>${rand}</strong> (between ${min} and ${max})`;
+        });
+        generateRandomBtn.click();
+    }
+
+    // ---------- 9. Base64 Encoder / Decoder ----------
+    const base64Input = document.getElementById('base64Input');
+    const encodeBase64Btn = document.getElementById('encodeBase64Btn');
+    const decodeBase64Btn = document.getElementById('decodeBase64Btn');
+    const base64Output = document.getElementById('base64Output');
+    if (encodeBase64Btn) {
+        encodeBase64Btn.addEventListener('click', () => {
+            const text = base64Input.value;
+            if (!text) { base64Output.innerHTML = '⚠️ Enter text to encode.'; return; }
+            base64Output.innerHTML = btoa(text);
+        });
+    }
+    if (decodeBase64Btn) {
+        decodeBase64Btn.addEventListener('click', () => {
+            const b64 = base64Input.value;
+            if (!b64) { base64Output.innerHTML = '⚠️ Enter Base64 to decode.'; return; }
+            try {
+                base64Output.innerHTML = atob(b64);
+            } catch(e) {
+                base64Output.innerHTML = '❌ Invalid Base64 string.';
+            }
+        });
+    }
+
+// ---------- 10. Password Strength Checker (Accurate - based on crack time) ----------
+const passwordInput = document.getElementById('passwordInput');
+const checkStrengthBtn = document.getElementById('checkStrengthBtn');
+const strengthOutput = document.getElementById('strengthOutput');
+
+const commonPasswords = [
+    'password', '123456', '12345678', 'qwerty', 'abc123', 'admin', 
+    'welcome', 'letmein', '12345', 'password123', 'root', 'iloveyou', 
+    'monkey', 'dragon', 'sunshine', 'princess', 'master', 'shadow'
+];
+
+function getPasswordStrength(pwd) {
+    // 1. Check common passwords
+    if (commonPasswords.includes(pwd.toLowerCase())) {
+        return {
+            strengthLevel: 'Very Weak (Common)',
+            crackTime: 'instantly',
+            seconds: 0,
+            charsetSize: 0,
+            combinations: 0
+        };
+    }
+
+    const len = pwd.length;
+    if (len === 0) {
+        return { strengthLevel: 'No password', crackTime: '', seconds: 0, charsetSize: 0, combinations: 0 };
+    }
+
+    const hasLower = /[a-z]/.test(pwd);
+    const hasUpper = /[A-Z]/.test(pwd);
+    const hasDigit = /[0-9]/.test(pwd);
+    const hasSpecial = /[^a-zA-Z0-9]/.test(pwd);
+
+    // محاسبه دقیق فضای کاراکترها
+    let charsetSize = 0;
+    if (hasLower) charsetSize += 26;
+    if (hasUpper) charsetSize += 26;
+    if (hasDigit) charsetSize += 10;
+    if (hasSpecial) charsetSize += 33; // ~33 کاراکتر نماد رایج روی کیبورد US
+
+    // اگر هیچ نوع کاراکتری شناسایی نشد (نباید رخ دهد) پیش‌فرض 26
+    if (charsetSize === 0) charsetSize = 26;
+
+    // تعداد ترکیبات ممکن = (فضای کاراکتر) ^ (طول رمز)
+    const combinations = Math.pow(charsetSize, len);
+    const guessesPerSecond = 1_000_000_000; // 1 میلیارد حدس در ثانیه (سخت‌افزار قدرتمند)
+    let seconds = combinations / guessesPerSecond;
+
+    // تعیین سطح امنیتی بر اساس زمان کرک (استاندارد NIST-like)
+    let strengthLevel;
+    if (seconds < 1) strengthLevel = 'Very Weak';
+    else if (seconds < 60) strengthLevel = 'Very Weak';      // کمتر از 1 دقیقه
+    else if (seconds < 3600) strengthLevel = 'Weak';         // کمتر از 1 ساعت
+    else if (seconds < 86400) strengthLevel = 'Medium';      // کمتر از 1 روز
+    else if (seconds < 31536000) strengthLevel = 'Strong';   // کمتر از 1 سال
+    else if (seconds < 31536000 * 100) strengthLevel = 'Very Strong'; // کمتر از 100 سال
+    else strengthLevel = 'Extremely Strong';                 // بیش از 100 سال
+
+    // فرمت‌بندی زمان برای نمایش
+    let crackTime;
+    if (seconds < 1) crackTime = 'less than 1 second';
+    else if (seconds < 60) crackTime = `${Math.round(seconds)} seconds`;
+    else if (seconds < 3600) crackTime = `${Math.round(seconds / 60)} minutes`;
+    else if (seconds < 86400) crackTime = `${Math.round(seconds / 3600)} hours`;
+    else if (seconds < 31536000) crackTime = `${Math.round(seconds / 86400)} days`;
+    else if (seconds < 31536000 * 100) crackTime = `${Math.round(seconds / 31536000)} years`;
+    else crackTime = 'centuries (>100 years)';
+
+    return { strengthLevel, crackTime, seconds, charsetSize, combinations };
+}
+
+if (checkStrengthBtn) {
+    checkStrengthBtn.addEventListener('click', () => {
+        const pwd = passwordInput.value;
+        if (!pwd) {
+            strengthOutput.innerHTML = 'Enter a password.';
+            return;
+        }
+        const { strengthLevel, crackTime, charsetSize, combinations } = getPasswordStrength(pwd);
+        
+        // رنگ‌بندی مناسب
+        let color;
+        switch (strengthLevel) {
+            case 'Very Weak (Common)':
+            case 'Very Weak':
+                color = '#f44'; break;
+            case 'Weak':
+                color = '#ff8c00'; break;
+            case 'Medium':
+                color = '#ff0'; break;
+            case 'Strong':
+                color = '#8bc34a'; break;
+            case 'Very Strong':
+                color = '#0f0'; break;
+            case 'Extremely Strong':
+                color = '#0f0'; break;
+            default:
+                color = '#fff';
+        }
+        
+        strengthOutput.innerHTML = `
+            Strength: <span style="color:${color}; font-weight:bold;">${strengthLevel}</span><br>
+            Estimated brute-force time: ${crackTime}<br>
+            <span style="font-size:0.7rem; color:#aaa;">(based on ${charsetSize} character set, ${combinations.toExponential(2)} combinations, 1e9 guesses/sec)</span>
+        `;
+    });
+}
+
+    // ---------- 11. Character / Word / Line Counter ----------
+    const counterText = document.getElementById('counterText');
+    const countBtn = document.getElementById('countBtn');
+    const counterResult = document.getElementById('counterResult');
+    if (countBtn) {
+        countBtn.addEventListener('click', () => {
+            const text = counterText.value;
+            const chars = text.length;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const lines = text === '' ? 0 : text.split(/\r\n|\r|\n/).length;
+            counterResult.innerHTML = `Characters: ${chars} | Words: ${words} | Lines: ${lines}`;
+        });
+        countBtn.click();
+    }
+})();

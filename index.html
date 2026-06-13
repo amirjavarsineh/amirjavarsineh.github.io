@@ -184,6 +184,7 @@
                 <a href="#experience" onclick="closeMenu()">Experience</a>
                 <a href="#education" onclick="closeMenu()">Education</a>
                 <a href="#certifications" onclick="closeMenu()">Certifications</a>
+                <a href="#useful-tools" onclick="closeMenu()">Tools</a>   
                 <a href="#contact" onclick="closeMenu()">Contact</a>
             </div>
         </div>
@@ -679,6 +680,166 @@
         </div>
     </div>
 </section> -->
+
+
+
+
+
+<!-- Useful Tools -->
+<section id="useful-tools">
+    <h2> Useful Tools</h2>
+    <div class="tools-grid">
+
+        <!-- Subnet Calculator -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-network-wired"></i> Subnet Calculator</h3>
+            <p>Calculate network details from IP and CIDR</p>
+            <div class="tool-input-group">
+                <input type="text" id="subnetIp" placeholder="e.g., 192.168.1.0" value="192.168.1.0">
+                <input type="text" id="subnetCidr" placeholder="CIDR (e.g., 24)" value="24">
+                <button id="calcSubnetBtn" class="tool-btn">Calculate</button>
+            </div>
+            <div class="tool-output" id="subnetOutput">Waiting for input...</div>
+        </div>
+
+        <!-- IPv4 ↔ Binary -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-calculator"></i> IPv4 ↔ Binary</h3>
+            <p>Convert IP to binary and binary to IP</p>
+            <div class="tool-input-group">
+                <input type="text" id="ipInput" placeholder="IP address (e.g., 192.168.1.1)" value="192.168.1.1">
+                <button id="ipToBinaryBtn" class="tool-btn">→ Binary</button>
+            </div>
+            <div class="tool-output" id="binaryOutput">Binary will appear here...</div>
+            <div class="tool-input-group" style="margin-top: 1rem;">
+                <input type="text" id="binaryInput" placeholder="Binary (e.g., 11000000.10101000.00000001.00000001)">
+                <button id="binaryToIpBtn" class="tool-btn">→ IP</button>
+            </div>
+            <div class="tool-output" id="ipOutput">IP will appear here...</div>
+        </div>
+
+        <!-- Password & Username Generator -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-key"></i> Password & Username Generator</h3>
+            <p>Generate random strong password or username</p>
+            <div class="tool-input-group">
+                <input type="number" id="pwdLength" placeholder="Password length" value="12" min="4" max="32">
+                <button id="generatePwdBtn" class="tool-btn">Generate Password</button>
+            </div>
+            <div class="tool-output" id="pwdOutput">Click "Generate Password"...</div>
+            <div class="tool-input-group" style="margin-top: 1rem;">
+                <button id="generateUsernameBtn" class="tool-btn">Generate Random Username</button>
+            </div>
+            <div class="tool-output" id="usernameOutput">Click "Generate Random Username"...</div>
+        </div>
+
+
+        <!-- Unit Converter (Length, Weight, Temperature, Time, Speed, Volume, Area, Energy, Pressure) -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-arrows-spin"></i> Unit Converter</h3>
+            <p>Convert between units (accurate formulas)</p>
+            <div class="tool-input-group">
+                <select id="convType">
+                    <option value="length">Length</option>
+                    <option value="weight">Weight</option>
+                    <option value="temp">Temperature</option>
+                    <option value="time">Time</option>
+                    <option value="speed">Speed</option>
+                    <option value="volume">Volume</option>
+                    <option value="area">Area</option>
+                    <option value="energy">Energy</option>
+                    <option value="pressure">Pressure</option>
+                </select>
+            </div>
+            <div class="tool-input-group">
+                <input type="number" id="convValue" placeholder="Value" value="1">
+                <select id="fromUnit"></select>
+                <span>→</span>
+                <select id="toUnit"></select>
+                <button id="convertBtn" class="tool-btn">Convert</button>
+            </div>
+            <div class="tool-output" id="convOutput">Select conversion type and enter value...</div>
+        </div>
+
+
+
+        <!-- Text ↔ Binary Converter -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-code"></i> Text ↔ Binary</h3>
+            <p>Convert text to binary and binary to text (ASCII 8-bit)</p>
+            <div class="tool-input-group">
+                <textarea id="textForBinary" rows="2" placeholder="Enter text... (e.g., Hello)"></textarea>
+                <button id="textToBinaryBtn" class="tool-btn">→ Binary</button>
+            </div>
+            <div class="tool-output" id="binaryResult">Binary will appear here...</div>
+            <div class="tool-input-group" style="margin-top: 1rem;">
+                <textarea id="binaryForText" rows="2" placeholder="Enter binary (e.g., 01001000 01101001)"></textarea>
+                <button id="binaryToTextBtn" class="tool-btn">→ Text</button>
+            </div>
+            <div class="tool-output" id="textResult">Text will appear here...</div>
+            <div class="tool-input-group">
+                <button id="copyBinaryResultBtn" class="tool-btn" style="background:#2a2a2a;">Copy Binary</button>
+                <button id="copyTextResultBtn" class="tool-btn" style="background:#2a2a2a;">Copy Text</button>
+            </div>
+        </div>
+
+        <!-- Random Number Generator -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-dice-d6"></i> Random Number Generator</h3>
+            <p>Generate random integer between min and max</p>
+            <div class="tool-input-group">
+                <input type="number" id="randMin" placeholder="Min" value="1">
+                <input type="number" id="randMax" placeholder="Max" value="100">
+                <button id="generateRandomBtn" class="tool-btn">Generate</button>
+            </div>
+            <div class="tool-output" id="randomResult">Click "Generate"</div>
+        </div>
+
+        <!-- Base64 Encoder / Decoder -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-lock"></i> Base64 Encoder/Decoder</h3>
+            <p>Encode text to Base64 or decode Base64 to text</p>
+            <div class="tool-input-group">
+                <textarea id="base64Input" rows="2" placeholder="Enter text or Base64..."></textarea>
+                <button id="encodeBase64Btn" class="tool-btn">Encode → Base64</button>
+                <button id="decodeBase64Btn" class="tool-btn">Decode → Text</button>
+            </div>
+            <div class="tool-output" id="base64Output">Output will appear here...</div>
+        </div>
+
+        <!-- Password Strength Checker -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> Password Strength Checker</h3>
+            <p>Check how strong your password is</p>
+            <div class="tool-input-group">
+                <input type="password" id="passwordInput" placeholder="Enter password">
+                <button id="checkStrengthBtn" class="tool-btn">Check Strength</button>
+            </div>
+            <div class="tool-output" id="strengthOutput">Enter a password...</div>
+        </div>
+
+        <!-- Character / Word / Line Counter -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-text-height"></i> Text Counter</h3>
+            <p>Count characters, words, and lines</p>
+            <div class="tool-input-group">
+                <textarea id="counterText" rows="3" placeholder="Type or paste your text here..."></textarea>
+                <button id="countBtn" class="tool-btn">Count</button>
+            </div>
+            <div class="tool-output" id="counterResult">Characters: 0 | Words: 0 | Lines: 0</div>
+        </div>
+
+
+        <!-- Motivational Quote Generator -->
+        <div class="tool-card">
+            <h3><i class="fa-solid fa-quote-right"></i> Motivational Quote</h3>
+            <p>Get inspired with a random quote</p>
+            <button id="newQuoteBtn" class="tool-btn" style="width:100%;">New Quote</button>
+            <div class="tool-output" id="quoteOutput" style="font-style:italic;">Click "New Quote" for inspiration...</div>
+        </div>
+
+    </div>
+</section>
 
 
 
