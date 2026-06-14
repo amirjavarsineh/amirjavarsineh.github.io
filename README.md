@@ -1,8 +1,7 @@
 # Amir Javarsineh — CyberSecurity Engineer Portfolio
 
-> A modern, interactive developer portfolio with a terminal-inspired design, featuring live tools, chatbot, hacker mode, and responsive layout.
+> A modern, interactive developer portfolio with a terminal-inspired design, featuring live tools, chatbot, and responsive layout.
 
-![Portfolio Screenshot](https://via.placeholder.com/800x400?text=Amir+Javarsineh+Portfolio)
 
 ## 🌟 Live Demo
 
