@@ -61,7 +61,6 @@ This is the personal portfolio website of **Amir Javarsineh** – a CyberSecurit
 ## 📁 Project Structure
 
 ```
-portfolio/
 ├── index.html
 ├── logo.png
 ├── src/
@@ -80,7 +79,7 @@ portfolio/
 1. **Clone the repository**
    ```bash
    git clone https://github.com/amirjavarsineh/amirjavarsineh.github.io.git
-   cd amirjavarsineh-portfolio
+   
    ```
 
 2. **Open the project**
