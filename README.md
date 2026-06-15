@@ -79,7 +79,7 @@ portfolio/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/amirjavarsineh/amirjavarsineh-portfolio.git
+   git clone https://github.com/amirjavarsineh/amirjavarsineh.github.io.git
    cd amirjavarsineh-portfolio
    ```
 
