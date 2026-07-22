@@ -1321,3 +1321,44 @@ if (checkStrengthBtn) {
         countBtn.click();
     }
 })();
+
+
+
+
+
+
+
+// ============================================
+// Prevent browser from saving scroll position
+// ============================================
+history.scrollRestoration = 'manual';
+
+// ============================================
+// Boot Screen Animation with scroll to top
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const bootScreen = document.getElementById('bootScreen');
+    
+    // Hide boot screen after animation completes
+    setTimeout(() => {
+        bootScreen.classList.add('fade-out');
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+            // 🔥 Force scroll to top after boot
+            window.scrollTo(0, 0);
+        }, 500);
+    }, 6000);
+    
+    // Allow skipping with any key press or click
+    const skipBoot = () => {
+        bootScreen.classList.add('fade-out');
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+            // 🔥 Force scroll to top when skipping
+            window.scrollTo(0, 0);
+        }, 500);
+    };
+    
+    document.addEventListener('keydown', skipBoot, { once: true });
+    bootScreen.addEventListener('click', skipBoot, { once: true });
+});
